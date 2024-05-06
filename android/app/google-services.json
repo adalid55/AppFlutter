@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "313398410895",
+    "project_id": "fir-conflutter",
+    "storage_bucket": "fir-conflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313398410895:android:cdc0dda33edc7873dd3afa",
+        "android_client_info": {
+          "package_name": "com.flutterconfirebase.sistemafacturacion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2iybjgZW10GKyK6XJWUvGWyzGUiXNPLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
