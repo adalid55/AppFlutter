@@ -40,7 +40,7 @@ Productos(),
 
         currentIndex: _paginaActual,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.add_shopping_cart), label: "Factura"),
+          BottomNavigationBarItem(icon: Icon(Icons.add_shopping_cart), label: "Facturas"),
           BottomNavigationBarItem(icon: Icon(Icons.add_business), label: "Productos"),
         ],
       ),

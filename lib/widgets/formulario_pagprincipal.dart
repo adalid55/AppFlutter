@@ -20,6 +20,7 @@ class _FormBillState extends State<FormBill> {
 
 String? documentoId;
 FocusNode _focusNode = FocusNode();
+FocusNode _focusNodeCant = FocusNode();
 
 
 final List<DataModel> _data = [];
@@ -228,6 +229,7 @@ Future<void> _updateQuantityInDatabase(String codigo, int quantity) async {
             child: ElevatedButton(onPressed: () async {
             
               await obtenerDatosProducto(controllerCod.text);
+              _focusNodeCant.requestFocus();
          
             }, child: const Text("Buscar")
             ),
@@ -360,6 +362,25 @@ Future<void> _updateQuantityInDatabase(String codigo, int quantity) async {
             child: ElevatedButton( 
             onPressed: () async {
 
+              if (_data.isEmpty) {
+                showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('¡Factura Vacia!'),
+                    content: const Text('Favor ingrese primero un producto'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Center(child: Text('Aceptar')),
+                      ),
+                    ],
+                  );
+                },
+              );
+              }else{
                 _clearRows();
                 showDialog(
                 context: context,
@@ -378,6 +399,9 @@ Future<void> _updateQuantityInDatabase(String codigo, int quantity) async {
                   );
                 },
               );
+              }
+
+
             }, 
             child: const Text("Facturar")
             ),
@@ -425,6 +449,7 @@ Future<void> _updateQuantityInDatabase(String codigo, int quantity) async {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         margin: const EdgeInsets.symmetric(horizontal: 15),
         child: TextField(
+          focusNode: _focusNodeCant,
           controller: controllerCant,
           keyboardType: TextInputType.number,
           style: const TextStyle(fontSize: 16),
@@ -446,6 +471,7 @@ Future<void> _updateQuantityInDatabase(String codigo, int quantity) async {
         margin: const EdgeInsets.symmetric(horizontal: 15),
         child: TextField(
           controller: controllerNombre,
+          enabled: false,
           style: const TextStyle(fontSize: 16),
           decoration: const InputDecoration(
             border: InputBorder.none,
@@ -465,6 +491,7 @@ Future<void> _updateQuantityInDatabase(String codigo, int quantity) async {
         margin: const EdgeInsets.symmetric(horizontal: 15),
         child: TextField(
           controller:  controllerExist,
+          enabled: false,
           style: const TextStyle(fontSize: 16),
           decoration: const InputDecoration(
             border: InputBorder.none,
@@ -484,6 +511,7 @@ Future<void> _updateQuantityInDatabase(String codigo, int quantity) async {
         margin: const EdgeInsets.symmetric(horizontal: 15),
         child:  TextField(
           controller: controllerPrec,
+          enabled: false,
           style: const TextStyle(fontSize: 16),
           decoration: const InputDecoration(
             border: InputBorder.none,
@@ -504,6 +532,7 @@ Future<void> _updateQuantityInDatabase(String codigo, int quantity) async {
         margin: const EdgeInsets.symmetric(horizontal: 15),
         child:  TextField(
           controller: controllerDesc,
+          keyboardType: TextInputType.number,
           style: const TextStyle(fontSize: 16),
           decoration: const InputDecoration(
             border: InputBorder.none,
